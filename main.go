@@ -269,7 +269,7 @@ func printStats(db *sql.DB) {
 		return contractAccessCountSorted[i].accessCount > contractAccessCountSorted[j].accessCount
 	})
 
-	fmt.Println("-- MPT Summary --")
+	fmt.Println("-- Summary --")
 	fmt.Printf("Block range: [%d, %d] (%d total blocks)\n", firstBlock, lastBlock, lastBlock-firstBlock+1)
 	fmt.Printf("Total txns: %d\n\n", len(txnTraces))
 
@@ -280,9 +280,9 @@ func printStats(db *sql.DB) {
 		totalAccesses += contractStats.accessCount
 	}
 	fmt.Printf("Total read/write accesses: %d\n", totalAccesses)
-	fmt.Printf("Depth average is: %.02f\n\n", float64(totalDepthSum)/float64(totalAccesses))
+	fmt.Printf("MPT average depth is: %.02f\n\n", float64(totalDepthSum)/float64(totalAccesses))
 
-	fmt.Printf("Top 20 contracts with most accesses:\n")
+	fmt.Printf("Top 20 contracts with the most accesses:\n")
 	for i := 0; i < 20; i++ {
 		fmt.Printf("\tContract %s\n", contractAccessCountSorted[i].address)
 		fmt.Printf("\t\tRead/Write slot accesses: %d\n", contractAccessCountSorted[i].accessCount)
