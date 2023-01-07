@@ -285,7 +285,7 @@ func printStats(db *sql.DB) {
 	fmt.Printf("Top 20 contracts with the most accesses:\n")
 	for i := 0; i < 20; i++ {
 		fmt.Printf("\tContract %s\n", contractAccessCountSorted[i].address)
-		fmt.Printf("\t\tRead/Write slot accesses: %d\n", contractAccessCountSorted[i].accessCount)
+		fmt.Printf("\t\tRead/Write slot accesses: %d (%.02f%%)\n", contractAccessCountSorted[i].accessCount, float64(contractAccessCountSorted[i].accessCount)/float64(totalAccesses)*100)
 		fmt.Printf("\t\tMPT Avg. read/write access depth: %.02f\n", float64(contractAccessCountSorted[i].depthSum)/float64(contractAccessCountSorted[i].accessCount))
 
 		totalReadAccess := float64(contractAccessCountSorted[i].VKTAccessReadFreeCount +
